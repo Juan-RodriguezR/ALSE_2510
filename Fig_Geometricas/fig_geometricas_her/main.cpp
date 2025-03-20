@@ -3,22 +3,24 @@
 #include "Cuadrado.h"
 #include "Triangulo.h"
 #include <vector>
+#include "Pentagono.h"
 
 using namespace std;
 
-int main(){
-    vector<Geometrica*> vFig;
+int main()
+{
+    vector<Geometrica *> vFig;
 
-    Circulo a = Circulo( 5. );
+    Circulo a(5.);
     cout << "Hello World!" << endl;
     cout << "Perímetro: " << a.perimetro() << " y área: " << a.area() << endl;
-    a.setRadio( 7. );
+    a.setRadio(7.);
     cout << "Perímetro: " << a.perimetro() << " y área: " << a.area() << endl;
 
-    Cuadrado b = Cuadrado( 10. );
+    Cuadrado b(10.);
     cout << "Perímetro: " << b.perimetro() << " y área: " << b.area() << endl;
 
-    Geometrica* pG=0;
+    Geometrica *pG = 0;
 
     pG = &a;
     cout << "Perímetro: " << pG->perimetro() << " y área: " << pG->area() << endl;
@@ -26,54 +28,68 @@ int main(){
     pG = &b;
     cout << "Perímetro: " << pG->perimetro() << " y área: " << pG->area() << endl;
 
-    pG = new Triangulo( 5., 6. );
+    pG = new Triangulo(5., 6.);
     cout << "Perímetro: " << pG->perimetro() << " y área: " << pG->area() << endl;
 
     cout << pG << endl;
 
-    int tipo = 0;
-    float radio, lado, base, altura;
-    radio = lado = base = altura = 0.;
+    Pentagono c(5.);
+    cout << "Perímetro: " << c.perimetro() << " y área: " << c.area() << endl;
+    pG = &c;
+    cout << "Perímetro: " << pG->perimetro() << " y área: " << pG->area() << endl;
 
-    for (int i = 0; i < 5; i++){
+    int tipo = 0;
+    float radio, lado, base, altura, plado;
+    radio = lado = base = altura = plado = 0.;
+
+    for (int i = 0; i < 5; i++)
+    {
         cout << "Figura para crear Circulo(1), Cuadrado(2), Triangulo(3) o "
-                "Pentagono(4)" << endl;
+                "Pentagono(4)"
+             << endl;
         cin >> tipo;
-        switch (tipo) {
+        switch (tipo)
+        {
         case 1:
             cout << "Ingrese el radio: ";
             cin >> radio;
-            pG = new Circulo( radio );
+            pG = new Circulo(radio);
             break;
         case 2:
             cout << "Ingrese el lado: ";
             cin >> lado;
-            pG = new Cuadrado( lado );
+            pG = new Cuadrado(lado);
             break;
         case 3:
             cout << "Ingrese el base: ";
             cin >> base;
             cout << "ahora la altura: ";
             cin >> altura;
-            pG = new Triangulo( base, altura );
+            pG = new Triangulo(base, altura);
+            break;
+        case 4:
+            cout << "Ingrese el lado: ";
+            cin >> plado;
+            pG = new Pentagono(plado); // Correctly assign to pG
             break;
         default:
             cout << "Por favor lea bien" << endl;
             break;
         }
-        vFig.push_back( pG );
+        vFig.push_back(pG); // Ensure pG is pushed to the vector
     }
 
     cout << vFig.size() << endl;
 
-    for (int i = 0; i < vFig.size(); i++){
+    for (int i = 0; i < vFig.size(); i++)
+    {
         cout << "Perímetro: " << vFig.at(i)->perimetro() << " y área: " << vFig.at(i)->area() << endl;
     }
 
-    for (int i = 0; i < vFig.size(); i++){
+    for (int i = 0; i < vFig.size(); i++)
+    {
         delete vFig.at(i);
     }
-
 
     return 0;
 }
