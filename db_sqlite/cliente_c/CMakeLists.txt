@@ -17,4 +17,3 @@ target_link_libraries (${PROJECT_NAME}_select sqlite3 )
 target_link_libraries (${PROJECT_NAME}_select_temp sqlite3 )
 target_link_libraries (${PROJECT_NAME}_update sqlite3 )
 target_link_libraries (${PROJECT_NAME}_delete sqlite3 )
-
